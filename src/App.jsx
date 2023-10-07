@@ -32,25 +32,38 @@ const handleButtonClick = () => {
 };
 
 return (
-    <>
-      <div>
-        <a href="https://smitesmalos.com.ar" target="_blank" rel="noreferrer">
-          <img src={tahmRot} className="logo react" alt="Tahm Rotando" />
-        </a>
-      </div>
-      <h1>Un nuevo episodio comienza</h1>
-      <div className="card">
-        <button onClick={handleButtonClick}>
-          Botón de hacer nada.
-        </button>
-        <p>
-          ¡DrakeWorld aka Smites Malos aka Drake ha regresado!
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Se está reconstruyendo este sitio. Solo esperen un poco. Días en desarrollo: {dias}.
-      </p>
-    </>
+    <div className="App">
+      <header className="App-header">
+        <h1 className="Title-header">Drake World v2.0</h1>
+        <nav>
+          <a href="#inicio">Inicio</a> /
+          <a href="#proyectos">Proyectos</a> /
+          <a href="#youtube">Youtube</a> /
+          <a href="#discord">Discord</a>
+        </nav>
+      </header>
+      <main>
+        <section id="inicio">
+          <div>
+            <a href="https://smitesmalos.com.ar" target="_blank" rel="noreferrer">
+              <img src={tahmRot} className="logo react" alt="Tahm Rotando" />
+            </a>
+          </div>
+          <h1>Un nuevo episodio comienza</h1>
+          <div className="card">
+            <button onClick={handleButtonClick}>
+              Botón de hacer nada.
+            </button>
+            <p>
+              ¡DrakeWorld aka Smites Malos aka Drake ha regresado!
+            </p>
+          </div>
+          <p className="read-the-docs">
+            Se está reconstruyendo este sitio. Solo esperen un poco. Días en desarrollo: {dias}.
+          </p>
+        </section>
+      </main>
+    </div>
 );
 }
 
