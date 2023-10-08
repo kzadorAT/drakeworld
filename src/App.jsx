@@ -58,7 +58,7 @@ return (
             <p>
               ¡DrakeWorld aka Smites Malos aka Drake ha regresado!
             </p>
-            <p>Contador básico de castigos malos: 1</p>
+            <p>Contador muy básico de castigos malos: 1</p>
             <img src={smites}/>
           </div>
           <p className="read-the-docs">
