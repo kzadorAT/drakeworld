@@ -1,4 +1,5 @@
 import tahmRot from '/tahm.png'
+import smites from '/castigos.png'
 import './App.css'
 
 import React, { useEffect, useState } from 'react';
@@ -57,6 +58,8 @@ return (
             <p>
               ¡DrakeWorld aka Smites Malos aka Drake ha regresado!
             </p>
+            <p>Contador básico de castigos malos: 1</p>
+            <img src={smites}/>
           </div>
           <p className="read-the-docs">
             Se está reconstruyendo este sitio. Solo esperen un poco. Días en desarrollo: {dias}.
