@@ -1,10 +1,9 @@
-
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import moment from 'moment-timezone';
-import tahmRot from '/tahm.png'
-import smites from '/castigos.png'
-import './App.css'
+import tahmRot from '/tahm.png';
+import smites from '/castigos.png';
+import './App.css';
 import UserData from './components/UserData';
 
 function App() {
@@ -24,18 +23,17 @@ function App() {
     return () => clearInterval(intervalId); // Limpia el intervalo al desmontar el componente
   }, []);
 
-  
-const handleButtonClick = () => {
+  const handleButtonClick = () => {
     const logo = document.querySelector('.logo');
     logo.style.animationDuration = '1s';
-    
+
     setTimeout(() => {
       logo.style.animationDuration = '20s';
     }, 500); // Después de tres segundos, vuelve a la velocidad normal
-};
+  };
 
-return (
-  <Router>
+  return (
+    <Router>
       <div className="App">
         <header className="App-header">
           <h1 className="Title-header">Drake World v2.0</h1>
@@ -48,30 +46,36 @@ return (
         </header>
         <main>
           <Routes>
-            <Route path="/" element={
-              <section id="inicio">
-                <div>
-                  <a href="https://smitesmalos.com.ar" target="_blank" rel="noreferrer">
-                    <img src={tahmRot} className="logo react" alt="Tahm Rotando" />
-                  </a>
-                </div>
-                <h1>Un nuevo episodio comienza</h1>
-                <div className="card">
-                  <button onClick={handleButtonClick}>
-                    Botón de hacer nada.
-                  </button>
-                  <p>
-                    ¡DrakeWorld aka Smites Malos aka Drake ha regresado!
+            <Route
+              path="/"
+              element={
+                <section id="inicio">
+                  <div>
+                    <a href="https://smitesmalos.com.ar" target="_blank" rel="noreferrer">
+                      <img src={tahmRot} className="logo react" alt="Tahm Rotando" />
+                    </a>
+                  </div>
+                  <h1>Un nuevo episodio comienza</h1>
+                  <div className="card">
+                    <button onClick={handleButtonClick}>Botón de hacer nada.</button>
+                    <p>¡DrakeWorld aka Smites Malos aka Drake ha regresado!</p>
+                    <p>Contador muy básico de castigos malos: 1</p>
+                    <img src={smites} alt="Smites Malos" />
+                  </div>
+                  <p className="read-the-docs">
+                    Se está reconstruyendo este sitio. Solo esperen un poco. Días en desarrollo: {dias}.
                   </p>
-                  <p>Contador muy básico de castigos malos: 1</p>
-                  <img src={smites}/>
+                </section>
+              }
+            />
+            <Route
+              path="/hidden-wheel"
+              element={
+                <div>
+                  <UserData userId="1" />
                 </div>
-                <p className="read-the-docs">
-                  Se está reconstruyendo este sitio. Solo esperen un poco. Días en desarrollo: {dias}.
-                </p>
-              </section>
-            } />
-            <Route path="/hidden-wheel" element={<UserData userId="1"/>} />
+              }
+            />
           </Routes>
         </main>
       </div>
@@ -80,4 +84,3 @@ return (
 }
 
 export default App;
-
