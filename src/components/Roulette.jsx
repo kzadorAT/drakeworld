@@ -9,7 +9,7 @@ const Roulette = ({ userId, onSpinResult }) => {
   useEffect(() => {
     const fetchPrizes = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/prizes/');
+        const response = await fetch('https://drakeworld-backend.vercel.app/api/prizes/');
         const data = await response.json();
         setPrizes(data);
       } catch (error) {
@@ -26,7 +26,7 @@ const Roulette = ({ userId, onSpinResult }) => {
     setIsSpinning(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/spins/spinWheel', {
+      const response = await fetch('https://drakeworld-backend.vercel.app/api/spins/spinWheel', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
