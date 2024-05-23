@@ -1,9 +1,11 @@
+
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import moment from 'moment-timezone';
 import tahmRot from '/tahm.png'
 import smites from '/castigos.png'
 import './App.css'
-
-import React, { useEffect, useState } from 'react';
-import moment from 'moment-timezone';
+import UserData from './components/UserData';
 
 function App() {
   const [dias, setDias] = useState(0);
@@ -33,52 +35,48 @@ const handleButtonClick = () => {
 };
 
 return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="Title-header">Drake World v2.0</h1>
-        <nav>
-          <a href="#inicio">Inicio</a> /
-          <a href="#proyectos">Proyectos</a> /
-          <a href="#youtube">Youtube</a> /
-          <a href="#discord">Discord</a>
-        </nav>
-      </header>
-      <main>
-        <section id="inicio">
-          <div>
-            <a href="https://smitesmalos.com.ar" target="_blank" rel="noreferrer">
-              <img src={tahmRot} className="logo react" alt="Tahm Rotando" />
-            </a>
-          </div>
-          <h1>Un nuevo episodio comienza</h1>
-          <div className="card">
-            <button onClick={handleButtonClick}>
-              Botón de hacer nada.
-            </button>
-            <p>
-              ¡DrakeWorld aka Smites Malos aka Drake ha regresado!
-            </p>
-            <p>Contador muy básico de castigos malos: 1</p>
-            <img src={smites}/>
-          </div>
-          <p className="read-the-docs">
-            Se está reconstruyendo este sitio. Solo esperen un poco. Días en desarrollo: {dias}.
-          </p>
-        </section>
-        <section id="profile">
-          <h2>Este es mi Spotify <span id="displayName"></span></h2>
-          <span id="avatar"></span>
-          <ul>
-            <li>Id: <span id="id"></span></li>
-            <li>Email: <span id="email"></span></li>
-            <li>Spotify URI: <a id="uri" href="#"></a></li>
-            <li>Link: <a id="url" href="#"></a></li>
-            <li>Profile Image: <span id="imgUrl"></span></li>
-          </ul>
-        </section>
-      </main>
-    </div>
-);
+  <Router>
+      <div className="App">
+        <header className="App-header">
+          <h1 className="Title-header">Drake World v2.0</h1>
+          <nav>
+            <a href="#inicio">Inicio</a> /
+            <a href="#proyectos">Proyectos</a> /
+            <a href="#youtube">Youtube</a> /
+            <a href="#discord">Discord</a>
+          </nav>
+        </header>
+        <main>
+          <Routes>
+            <Route path="/" element={
+              <section id="inicio">
+                <div>
+                  <a href="https://smitesmalos.com.ar" target="_blank" rel="noreferrer">
+                    <img src={tahmRot} className="logo react" alt="Tahm Rotando" />
+                  </a>
+                </div>
+                <h1>Un nuevo episodio comienza</h1>
+                <div className="card">
+                  <button onClick={handleButtonClick}>
+                    Botón de hacer nada.
+                  </button>
+                  <p>
+                    ¡DrakeWorld aka Smites Malos aka Drake ha regresado!
+                  </p>
+                  <p>Contador muy básico de castigos malos: 1</p>
+                  <img src={smites}/>
+                </div>
+                <p className="read-the-docs">
+                  Se está reconstruyendo este sitio. Solo esperen un poco. Días en desarrollo: {dias}.
+                </p>
+              </section>
+            } />
+            <Route path="/hidden-wheel" element={<UserData userId="1"/>} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
