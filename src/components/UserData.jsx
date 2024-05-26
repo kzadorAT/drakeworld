@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Roulette from "./Roulette";
+import AvailableGifts from "./AvailableGifts";
+import RedeemHistory from "./RedeemHistory";
+import './UserData.css';
 
 const UserData = ({ userId }) => {
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
+    const [reloadData, setReloadData] = useState(false);
 
     useEffect(() => {
         fetchUserData();
-    }, [userId]);
+    }, [userId, reloadData]);
 
     const fetchUserData = async () => {
         try {
@@ -30,8 +34,12 @@ const UserData = ({ userId }) => {
             points: prevData.points + result.prize.points,
             freeSpins: prevData.freeSpins - 1,
             lastSpin: new Date().toISOString(),
-            canSpinAgainIn: 24 // o el valor correcto según tu lógica
+            canSpinAgainIn: 8 // o el valor correcto según tu lógica
         }));
+    };
+
+    const handleRedeemSuccess = () => {
+        fetchUserData(); // Actualiza los datos del usuario
     };
 
     return (
@@ -49,6 +57,10 @@ const UserData = ({ userId }) => {
             )}
             <div>
                 <Roulette userId={userId} onSpinResult={handleSpinResult} />
+            </div>
+            <div className="gift-section">
+                <AvailableGifts userId={userId} userPoints={userData ? userData.points : 0} onRedeemSuccess={handleRedeemSuccess} reloadData={reloadData} />
+                <RedeemHistory userId={userId} reloadData={reloadData} />
             </div>
         </div>
     );
