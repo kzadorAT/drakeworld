@@ -7,7 +7,7 @@ const AvailableGifts = ({ userId, userPoints, onRedeemSuccess, reloadData }) => 
     useEffect(() => {
         const fetchGifts = async () => {
             try {
-                const response = await fetch("http://localhost:3000/api/gifts");
+                const response = await fetch("https://drakeworld-backend.vercel.app/api/gifts");
                 const data = await response.json();
                 setGifts(data);
             } catch (error) {
@@ -26,7 +26,7 @@ const AvailableGifts = ({ userId, userPoints, onRedeemSuccess, reloadData }) => 
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/api/redeems`, {
+            const response = await fetch(`https://drakeworld-backend.vercel.app/api/redeems`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
