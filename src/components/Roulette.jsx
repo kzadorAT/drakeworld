@@ -76,7 +76,7 @@ const Roulette = ({ userId, onSpinResult }) => {
             key={prize.id}
             className="item"
             style={{
-              transform: `rotate(${(360 / prizes.length) * index}deg)`,
+              transform: `rotate(${(360 / prizes.length) * index * 0.89999}deg)`,
               backgroundColor: getColorByIndex(index),
             }}
           >
@@ -91,7 +91,8 @@ const Roulette = ({ userId, onSpinResult }) => {
 };
 
 const getColorByIndex = (index) => {
-  const colors = ['#3f297e', '#169ed8', '#209b6c', '#60b236'];
+  // Medium Prizes - Large Prizes - Jackpot - Calabera - Fantasma - Small Prizes 2764bb
+  const colors = ['#4984cb','#2764bb', '#60b236', '#cb6649', '#cb9b49','#169ed8',];
   return colors[index % colors.length];
 };
 

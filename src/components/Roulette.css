@@ -57,8 +57,8 @@ button {
 
 .box-roulette .label {
   position: absolute;
-  left: 25%;
-  top: 50%;
+  left: 10%;
+  top: 75%;
   color: #fff;
   white-space: nowrap;
   transform-origin: 0 0;
@@ -81,7 +81,7 @@ button {
   width: 100px;
   height: 100px;
   font-weight: bold;
-  background: #fff;
+  background: #766ea3;
   border-radius: 50px;
   z-index: 9999;
   cursor: pointer;
