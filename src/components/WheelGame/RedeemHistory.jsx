@@ -7,7 +7,7 @@ const RedeemHistory = ({ userId, reloadData }) => {
     useEffect(() => {
         const fetchRedeems = async () => {
             try {
-                const response = await fetch(`https://drakeworld-backend.vercel.app/api/redeems/user/${userId}`);
+                const response = await fetch(`${import.meta.env.VITE_BASE_URL}/redeems/user/${userId}`);
                 const data = await response.json();
                 setRedeems(data.sort((a, b) => new Date(b.redeemed_at) - new Date(a.redeemed_at)));
             } catch (error) {

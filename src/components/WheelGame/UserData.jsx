@@ -15,7 +15,7 @@ const UserData = ({ userId }) => {
 
     const fetchUserData = async () => {
         try {
-            const response = await fetch(`https://drakeworld-backend.vercel.app/api/spinUsers/${userId}`);
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}/spinUsers/${userId}`);
             if (!response.ok) {
                 throw new Error("Failed to fetch user data");
             }

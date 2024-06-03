@@ -21,7 +21,7 @@ const Wheel = ({ userId }) => {
         setError(null);
 
         try {
-            const response = await fetch('http://localhost:3000/api/spins/spinWheel', {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}/spins/spinWheel`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
