@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { registerAdmin } from "../../api/users";
 
 const RegisterAdmin = () => {
     const [username, setUsername] = useState('');
@@ -9,14 +10,7 @@ const RegisterAdmin = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${import.meta.env.VITE_BASE_URL}/users/registerAdmin`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, password, email, role_id: roleId }),
-            });
-            const data = await response.json();
+            const data = await registerAdmin({ username, password, email, roleId });
             console.log(data); // Do something with the response data
         } catch (error) {
             console.error(error);

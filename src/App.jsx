@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import RegisterAdmin from './components/User/RegisterAdmin';
-// import RegisterUser from './components/User/RegisterUser';
+import RegisterUser from './components/User/RegisterUser';
 import LoginUser from './components/User/LoginUser';
-// import UserProfile from './components/User/UserProfile';
+import UserProfile from './components/User/UserProfile';
 // import ExpensesPage from './pages/ExpensesPage';
 // import CreateExpense from './components/ExpenseApp/CreateExpense';
 // import ExpenseDetail from './components/ExpenseApp/ExpenseDetail';
@@ -46,7 +46,7 @@ function App() {
                <Link to="/register-admin">Admin</Link> /
               </>
             ) }
-            <Link to="/register-user">User</Link> /
+            <Link to="/register-user">Registrarse</Link> /
             {!isLoggedin && <Link to="/login">Login</Link>}
             {isLoggedin && (
               <>
@@ -54,7 +54,7 @@ function App() {
               <Link to="/expenses">Expenses</Link> /
               <Link to="/expenses/new">Create</Link> /
               <Link to="/expenses/:id">Detail</Link> 
-              <button onClick={handleLogout}>Cerrar Sesion</button>
+              <button onClick={handleLogout}>Cerrar Sesión</button>
               </>
             )}
           </nav>
@@ -70,7 +70,7 @@ function App() {
                 </PrivateRoute>
               }
             />
-            {/* <Route path="/register-user" element={<RegisterUser />} /> */}
+            <Route path="/register-user" element={<RegisterUser />} />
             <Route 
               path="/login"
               element={
@@ -79,8 +79,8 @@ function App() {
                 </div>
               }
             />
-            {/* <Route path="/profile" element={<UserProfile />} />
-            <Route path="/expenses" element={<ExpensesPage />} />
+            <Route path="/profile" element={<UserProfile />} />
+            {/*<Route path="/expenses" element={<ExpensesPage />} />
             <Route path="/expenses/new" element={<CreateExpense />} />
             <Route path="/expenses/:id" element={<ExpenseDetail />} /> */}
             <Route path="/hidden-wheel" element={<UserData userId="1" />} />
