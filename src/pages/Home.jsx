@@ -2,6 +2,8 @@ import tahmRot from '/tahm.png';
 import smites from '/castigos.png';
 import moment from 'moment-timezone';
 import React, { useEffect, useState } from 'react';
+import ChatAI from '../components/ChatAI/ChatAI';
+import './Home.css';
 
 const Home = () => {
 
@@ -32,21 +34,37 @@ const Home = () => {
 
 
     return (
-        <div className="home"><div>
-            <a href="https://smitesmalos.com.ar" target="_blank" rel="noreferrer">
-                <img src={tahmRot} className="logo react" alt="Tahm Rotando" />
-            </a>
-        </div>
+        <div className="home">
+            <div>
+                <a href="https://smitesmalos.com.ar" target="_blank" rel="noreferrer">
+                    <img src={tahmRot} className="logo react" alt="Tahm Rotando" />
+                </a>
+            </div>
+
             <h1>Un nuevo episodio comienza</h1>
-            <div className="card">
-                <button onClick={handleButtonClick}>Botón de hacer nada.</button>
-                <p>¡DrakeWorld aka Smites Malos aka Drake ha regresado!</p>
-                <p>Contador muy básico de castigos malos: 1</p>
-                <img src={smites} alt="Smites Malos" />
+
+            <div className='cards-section'>
+                <div className="card">
+                    <button onClick={handleButtonClick}>Botón de hacer nada.</button>
+                    <p>¡DrakeWorld aka Smites Malos aka Drake ha regresado!</p>
+                    <p>Contador muy básico de castigos malos: 1</p>
+                    <img src={smites} alt="Smites Malos" />
+                </div>
+                <div className="card">
+                    <h2>Habla con DrakeIA</h2>
+                    <ChatAI />
+                </div>
             </div>
             <p className="read-the-docs">
                 Se está reconstruyendo este sitio. Solo esperen un poco. Días en desarrollo: {dias}.
             </p>
+
+            <template id="message-template">
+                <li className='message'>
+                    <span></span>
+                    <p></p>
+                </li>
+            </template>
         </div>
     );
 };
