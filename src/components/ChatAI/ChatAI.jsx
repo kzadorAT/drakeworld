@@ -6,7 +6,7 @@ const ChatAI = () => {
     const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-    const [loadingText, setLoadingText] = useState('Presiona "Inicializar chat" para cargar la IA');
+    const [loadingText, setLoadingText] = useState('Presiona "Inicializar chat" para cargar el modelo.');
     const containerRef = useRef(null);
     const [engine, setEngine] = useState(null);
     const [isInitialized, setIsInitialized] = useState(false);
@@ -14,22 +14,28 @@ const ChatAI = () => {
 
     const initializeEngine = async () => {
         setIsInitializing(true);
-        const worker = new Worker(new URL('./worker.js', import.meta.url), { type: 'module' });
-        const newEngine = await CreateWebWorkerMLCEngine(
-            worker,
-            'Llama-3-8B-Instruct-q4f32_1-MLC-1k',
-            {
-                initProgressCallback: (info) => {
-                    setLoadingText(`${info.text}`);
-                    if(info.progress === 1){
-                        setIsButtonDisabled(false);
-                        setIsInitialized(true);
-                        setIsInitializing(false);
+        try {
+            const worker = new Worker(new URL('./worker.js', import.meta.url), { type: 'module' });
+            const newEngine = await CreateWebWorkerMLCEngine(
+                worker,
+                'Llama-3-8B-Instruct-q4f32_1-MLC-1k',
+                {
+                    initProgressCallback: (info) => {
+                        setLoadingText(`${info.text}`);
+                        if (info.progress === 1) {
+                            setIsButtonDisabled(false);
+                            setIsInitialized(true);
+                            setIsInitializing(false);
+                        }
                     }
                 }
-            }
-        );
-        setEngine(newEngine);
+            );
+            setEngine(newEngine);
+        } catch (error) {
+            console.error("Error al inicializar el motor:", error);
+            setIsInitializing(false);
+            setLoadingText("Error al cargar el modelo. Inténtalo de nuevo.");
+        }
     };
 
     const handleSubmit = async (event) => {
@@ -75,7 +81,7 @@ const ChatAI = () => {
     return (
         <div className="chat-container">
             {!isInitialized && !isInitializing && (
-                <button onClick={initializeEngine}>Inicializar chat</button> 
+                <button onClick={initializeEngine}>Inicializar chat</button>
             )}
             <div ref={containerRef}>
                 <ul>
@@ -89,10 +95,10 @@ const ChatAI = () => {
             </div>
             <form onSubmit={handleSubmit}>
                 <input
-                    placeholder="Escribe aqui tu pregunta..."
+                    placeholder="Escribe aquí tu pregunta..."
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    disabled={isButtonDisabled}
+                    disabled={!isInitialized}
                 />
                 <button type="submit" disabled={!isInitialized || isButtonDisabled}>Enviar</button>
             </form>
@@ -106,6 +112,6 @@ const ChatAI = () => {
             </template>
         </div>
     );
-}
+};
 
 export default ChatAI;
