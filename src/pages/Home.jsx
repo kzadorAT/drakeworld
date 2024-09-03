@@ -2,7 +2,6 @@ import tahmRot from '/tahm.png';
 import smites from '/castigos.png';
 import moment from 'moment-timezone';
 import React, { useEffect, useState } from 'react';
-import ChatAI from '../components/ChatAI/ChatAI';
 import './Home.css';
 
 const Home = () => {
@@ -49,10 +48,6 @@ const Home = () => {
                     <p>¡DrakeWorld aka Smites Malos aka Drake ha regresado!</p>
                     <p>Contador muy básico de castigos malos: 1</p>
                     <img src={smites} alt="Smites Malos" />
-                </div>
-                <div className="card">
-                    <h2>Habla con DrakeIA</h2>
-                    <ChatAI />
                 </div>
             </div>
             <p className="read-the-docs">
