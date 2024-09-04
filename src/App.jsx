@@ -8,6 +8,7 @@ import UserProfile from './components/User/UserProfile';
 import UserData from './components/WheelGame/UserData';
 import PrivateRoute from './components/ExpenseApp/PrivateRoute';
 import CreditCardList from './components/CreditCards/CreditCardList';
+import ExpenseList from './components/ExpenseApp/ExpenseList';
 import './App.css';
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/hidden-wheel" element={<UserData userId="1" />} />
           <Route path="/credit-cards" element={<CreditCardList />} />
+          <Route path="/expenses" element={<ExpenseList />} />
         </Routes>
       </main>
     </div>
