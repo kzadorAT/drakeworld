@@ -13,9 +13,11 @@ const CreditCardList = () => {
   const fetchCreditCards = async () => {
     try {
       const cards = await getCreditCards();
-      setCreditCards(cards);
+      // Filtrar las tarjetas que no han sido borradas
+      const activeCards = cards.filter(card => card.delete_date === null);
+      setCreditCards(activeCards);
     } catch (error) {
-      console.error('Error fetching credit cards:', error);
+      console.error('Error al obtener las tarjetas de crédito:', error);
     }
   };
 
