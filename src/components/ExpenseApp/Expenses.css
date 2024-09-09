@@ -1,0 +1,45 @@
+.expense-page {
+  display: flex;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: #cccccc;
+}
+
+.sidebar {
+  width: 300px;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #252526;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.expense-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.expense-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #2d2d2d;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.expense-charts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.chart {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #252526;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}

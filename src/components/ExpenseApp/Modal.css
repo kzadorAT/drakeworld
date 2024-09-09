@@ -6,10 +6,10 @@
 }
 
 .ReactModal__Content {
-  background-color: #2c2c2c !important;
-  color: #ffffff;
-  border: 1px solid #444 !important;
-  border-radius: 8px !important;
+  background-color: #252526 !important;
+  color: #cccccc !important;
+  border: 1px solid #3c3c3c !important;
+  border-radius: 6px !important;
   padding: 20px !important;
   max-width: 500px;
   width: 90%;
@@ -19,6 +19,31 @@
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #252526;
+  color: #cccccc;
+  border: 1px solid #3c3c3c;
+  border-radius: 6px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal-header {
@@ -26,38 +51,51 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  border-bottom: 1px solid #3c3c3c;
+  padding-bottom: 10px;
 }
 
 .modal-header h2 {
   margin: 0;
+  color: #cccccc;
 }
 
 .close-button {
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #ffffff;
+  color: #cccccc;
   cursor: pointer;
 }
 
-.credit-card-form label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.credit-card-form input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  background-color: #3a3a3a;
-  border: 1px solid #555;
-  border-radius: 4px;
+.close-button:hover {
   color: #ffffff;
 }
 
-.credit-card-form button {
-  background-color: #4a90e2;
-  color: white;
+.expense-form label, .credit-card-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #cccccc;
+}
+
+.expense-form input, .credit-card-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  background-color: #3c3c3c;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #cccccc;
+}
+
+.expense-form input:focus, .credit-card-form input:focus {
+  outline: none;
+  border-color: #0078d4;
+}
+
+.expense-form button, .credit-card-form button {
+  background-color: #0078d4;
+  color: #ffffff;
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
@@ -65,14 +103,42 @@
   margin-right: 10px;
 }
 
-.credit-card-form button:hover {
-  background-color: #357abd;
+.expense-form button:hover, .credit-card-form button:hover {
+  background-color: #2b88d8;
 }
 
-.credit-card-form button[type="button"] {
-  background-color: #6c757d;
+.expense-form button[type="button"], .credit-card-form button[type="button"] {
+  background-color: #3c3c3c;
 }
 
-.credit-card-form button[type="button"]:hover {
-  background-color: #5a6268;
+.expense-form button[type="button"]:hover, .credit-card-form button[type="button"]:hover {
+  background-color: #4c4c4c;
+}
+
+.expense-form select, .credit-card-form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  background-color: #3c3c3c;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #cccccc;
+  appearance: none; /* Removes default arrow in some browsers */
+  -webkit-appearance: none; /* Removes default arrow in webkit browsers */
+  -moz-appearance: none; /* Removes default arrow in Firefox */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23cccccc%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px top 50%;
+  background-size: 12px auto;
+  padding-right: 30px; /* Adds space for custom arrow */
+}
+
+.expense-form select:focus, .credit-card-form select:focus {
+  outline: none;
+  border-color: #0078d4;
+}
+
+.expense-form select option, .credit-card-form select option {
+  background-color: #3c3c3c;
+  color: #cccccc;
 }

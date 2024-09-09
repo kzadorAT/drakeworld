@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { getActiveExpenses, getAllExpenses, deleteExpense, createExpense, updateExpense } from '../../api/expenses';
 import { getCreditCards } from '../../api/creditCards';
-import { Link } from 'react-router-dom';
 import ExpenseForm from './ExpenseForm';
+import ExpenseChart from './ExpenseChart';
+import Modal from 'react-modal';
+import './Expenses.css';
+import './Modal.css';
+
+Modal.setAppElement('#root');
 
 const ExpenseList = () => {
   const [expenses, setExpenses] = useState([]);
   const [editingExpense, setEditingExpense] = useState(null);
   const [showAllExpenses, setShowAllExpenses] = useState(false);
   const [creditCards, setCreditCards] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchExpenses();
@@ -41,6 +47,7 @@ const ExpenseList = () => {
     try {
       await createExpense(expenseData);
       fetchExpenses();
+      setIsModalOpen(false);
     } catch (error) {
       console.error('Error al crear gasto:', error);
     }
@@ -65,49 +72,62 @@ const ExpenseList = () => {
     }
   };
 
+  const openEditModal = (expense) => {
+    setEditingExpense(expense);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setEditingExpense(null);
+    setIsModalOpen(false);
+  };
+
   return (
-    <div>
-      <h2>Gastos</h2>
-      <button onClick={() => setShowAllExpenses(!showAllExpenses)}>
-        {showAllExpenses ? 'Mostrar gastos activos' : 'Mostrar todos los gastos'}
-      </button>
-      <ExpenseForm onSubmit={handleCreateExpense} />
-      <ul>
-        {expenses.map((expense) => (
-          <li key={expense.id}>
-            {editingExpense === expense.id ? (
-              <ExpenseForm
-                onSubmit={(expenseData) => handleUpdateExpense(expense.id, expenseData)}
-                initialData={expense}
-                onCancel={() => setEditingExpense(null)}
-              />
-            ) : (
-              <>
-                <p><strong>Tipo:</strong> {expense.type}</p>
-                <p><strong>Monto:</strong> ${expense.amount.toFixed(2)}</p>
-                <p><strong>Método de pago:</strong> {expense.payment_method}</p>
-                {expense.card_id && (
-                  <p>
-                    <strong>Tarjeta de crédito:</strong> {creditCards[expense.card_id]?.card_issuer} - {creditCards[expense.card_id]?.bank_issuer}
-                    <Link to={`/credit-cards/${expense.card_id}`}>
-                      <button>Editar tarjeta</button>
-                    </Link>
-                  </p>
-                )}
-                {expense.installments && <p><strong>Cuotas:</strong> {expense.installments}</p>}
-                <p><strong>Fecha de creación:</strong> {new Date(expense.creation_date).toLocaleString()}</p>
-                {expense.delete_date && <p><strong>Fecha de eliminación:</strong> {new Date(expense.delete_date).toLocaleString()}</p>}
-                {!expense.delete_date && (
-                  <>
-                    <button onClick={() => setEditingExpense(expense.id)}>Editar</button>
-                    <button onClick={() => handleDeleteExpense(expense.id)}>Eliminar</button>
-                  </>
-                )}
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+    <div className="expense-page">
+      <div className="sidebar">
+        <h2>Gastos</h2>
+        <button onClick={() => setIsModalOpen(true)}>Agregar gasto</button>
+        <button onClick={() => setShowAllExpenses(!showAllExpenses)}>
+          {showAllExpenses ? 'Mostrar gastos activos' : 'Mostrar todos los gastos'}
+        </button>
+        <ul className="expense-list">
+          {expenses.map((expense) => (
+            <li key={expense.id} className="expense-item">
+              <p><strong>{expense.type}</strong> - ${expense.amount.toFixed(2)}</p>
+              <p>{expense.payment_method}</p>
+              <button onClick={() => openEditModal(expense)}>Editar</button>
+              <button onClick={() => handleDeleteExpense(expense.id)}>Eliminar</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="main-content">
+        <ExpenseChart expenses={expenses} />
+      </div>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel={editingExpense ? "Editar gasto" : "Agregar nuevo gasto"}
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+        <div className="modal-header">
+          <h2>{editingExpense ? "Editar gasto" : "Agregar nuevo gasto"}</h2>
+          <button onClick={closeModal} className="close-button">&times;</button>
+        </div>
+        <ExpenseForm
+          onSubmit={(expenseData) => {
+            if (editingExpense) {
+              handleUpdateExpense(editingExpense.id, expenseData);
+            } else {
+              handleCreateExpense(expenseData);
+            }
+            closeModal();
+          }}
+          initialData={editingExpense}
+          onCancel={closeModal}
+        />
+      </Modal>
     </div>
   );
 };

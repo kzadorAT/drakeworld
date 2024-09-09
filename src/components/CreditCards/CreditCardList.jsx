@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCreditCards, createCreditCard, updateCreditCard, deleteCreditCard } from '../../api/creditCards';
 import CreditCardForm from './CreditCardForm';
+import './CreditCardList.css';
 
 const CreditCardList = () => {
   const [creditCards, setCreditCards] = useState([]);
@@ -13,11 +14,9 @@ const CreditCardList = () => {
   const fetchCreditCards = async () => {
     try {
       const cards = await getCreditCards();
-      // Filtrar las tarjetas que no han sido borradas
-      const activeCards = cards.filter(card => card.delete_date === null);
-      setCreditCards(activeCards);
+      setCreditCards(cards);
     } catch (error) {
-      console.error('Error al obtener las tarjetas de crédito:', error);
+      console.error('Error al obtener tarjetas de crédito:', error);
     }
   };
 
@@ -26,7 +25,7 @@ const CreditCardList = () => {
       await createCreditCard(cardData);
       fetchCreditCards();
     } catch (error) {
-      console.error('Error creating credit card:', error);
+      console.error('Error al crear tarjeta de crédito:', error);
     }
   };
 
@@ -36,7 +35,7 @@ const CreditCardList = () => {
       fetchCreditCards();
       setEditingCard(null);
     } catch (error) {
-      console.error('Error updating credit card:', error);
+      console.error('Error al actualizar tarjeta de crédito:', error);
     }
   };
 
@@ -45,7 +44,7 @@ const CreditCardList = () => {
       await deleteCreditCard(id);
       fetchCreditCards();
     } catch (error) {
-      console.error('Error deleting credit card:', error);
+      console.error('Error al eliminar tarjeta de crédito:', error);
     }
   };
 
@@ -55,7 +54,7 @@ const CreditCardList = () => {
   };
 
   return (
-    <div>
+    <div className="credit-card-list">
       <h2>Tarjetas de Crédito</h2>
       <CreditCardForm onSubmit={handleCreateCard} />
       <ul>

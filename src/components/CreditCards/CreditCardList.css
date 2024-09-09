@@ -1,0 +1,49 @@
+.credit-card-list {
+  background-color: #1e1e1e;
+  color: #cccccc;
+  padding: 20px;
+}
+
+.credit-card-list h2 {
+  color: #cccccc;
+  margin-bottom: 20px;
+}
+
+.credit-card-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.credit-card-list li {
+  background-color: #252526;
+  border: 1px solid #3c3c3c;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+}
+
+.credit-card-list p {
+  margin: 5px 0;
+}
+
+.credit-card-list button {
+  background-color: #0078d4;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.credit-card-list button:hover {
+  background-color: #2b88d8;
+}
+
+.credit-card-list button:last-child {
+  background-color: #c72c41;
+}
+
+.credit-card-list button:last-child:hover {
+  background-color: #d13b4f;
+}

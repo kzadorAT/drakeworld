@@ -1,17 +1,49 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@layer base {
+  :root {
+    --background: 210 34% 13%; /* Cambiado a un azul grisáceo oscuro */
+    --foreground: 204 204 204;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+    --muted: 215 27% 16%;
+    --muted-foreground: 153 153 153;
+
+    --popover: 210 34% 13%;
+    --popover-foreground: 204 204 204;
+
+    --card: 215 28% 17%;
+    --card-foreground: 204 204 204;
+
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+
+    --primary: 210 100% 52%;
+    --primary-foreground: 204 204 204;
+
+    --secondary: 215 27% 16%;
+    --secondary-foreground: 204 204 204;
+
+    --accent: 215 27% 16%;
+    --accent-foreground: 204 204 204;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 204 204 204;
+
+    --ring: 215 28% 17%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 a {
@@ -66,4 +98,28 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Estilos globales para inputs */
+input, select, textarea {
+  background-color: hsl(215 28% 17%);
+  color: hsl(204 204 204);
+  border: 1px solid hsl(215 28% 17%);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: hsl(210 100% 52%);
+  box-shadow: 0 0 0 2px hsla(210, 100%, 52%, 0.25);
+}
+
+/* Estilos para el placeholder */
+input::placeholder, select::placeholder, textarea::placeholder {
+  color: hsl(153 153 153);
 }

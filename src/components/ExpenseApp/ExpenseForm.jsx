@@ -68,7 +68,7 @@ const ExpenseForm = ({ onSubmit, initialData, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="expense-form">
       <div>
         <label htmlFor="type">Tipo de gasto:</label>
         <input
@@ -138,13 +138,8 @@ const ExpenseForm = ({ onSubmit, initialData, onCancel }) => {
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         contentLabel="Añadir nueva tarjeta de crédito"
-        className="ReactModal__Content"
-        overlayClassName="ReactModal__Overlay"
       >
-        <div className="modal-header">
-          <h2>Añadir nueva tarjeta de crédito</h2>
-          <button className="close-button" onClick={() => setIsModalOpen(false)}>&times;</button>
-        </div>
+        <h2>Añadir nueva tarjeta de crédito</h2>
         <CreditCardForm onSubmit={handleAddCreditCard} onCancel={() => setIsModalOpen(false)} />
       </Modal>
     </form>
