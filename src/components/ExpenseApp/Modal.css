@@ -1,0 +1,78 @@
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ReactModal__Content {
+  background-color: #2c2c2c !important;
+  color: #ffffff;
+  border: 1px solid #444 !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.credit-card-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.credit-card-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  background-color: #3a3a3a;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+.credit-card-form button {
+  background-color: #4a90e2;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.credit-card-form button:hover {
+  background-color: #357abd;
+}
+
+.credit-card-form button[type="button"] {
+  background-color: #6c757d;
+}
+
+.credit-card-form button[type="button"]:hover {
+  background-color: #5a6268;
+}

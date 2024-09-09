@@ -10,6 +10,7 @@ import PrivateRoute from './components/ExpenseApp/PrivateRoute';
 import CreditCardList from './components/CreditCards/CreditCardList';
 import ExpenseList from './components/ExpenseApp/ExpenseList';
 import './App.css';
+import EditCreditCard from './components/CreditCards/EditCreditCard';
 
 function App() {
   const [isLoggedin, setIsLoggedIn] = useState(false);
@@ -83,6 +84,7 @@ function App() {
           <Route path="/hidden-wheel" element={<UserData userId="1" />} />
           <Route path="/credit-cards" element={<CreditCardList />} />
           <Route path="/expenses" element={<ExpenseList />} />
+          <Route path="/credit-cards/:id" element={<EditCreditCard />} />
         </Routes>
       </main>
     </div>

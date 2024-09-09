@@ -45,19 +45,10 @@ const CreditCardForm = ({ onSubmit, initialData, onCancel }) => {
       expiration_date: formatDateForSubmit(formData.expiration_date),
     };
     onSubmit(submittedData);
-    if (!initialData) {
-      setFormData({
-        card_issuer: '',
-        bank_issuer: '',
-        closing_date: '',
-        due_date: '',
-        expiration_date: '',
-      });
-    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="credit-card-form">
       <div>
         <label htmlFor="card_issuer">Emisor de la tarjeta:</label>
         <input
