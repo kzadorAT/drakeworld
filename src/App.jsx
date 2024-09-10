@@ -47,13 +47,13 @@ function App() {
             </>
           ) }
           <Link to="/register-user">Registrarse</Link> /
-          {!isLoggedin && <Link to="/login">Login</Link>}
+          {!isLoggedin && <Link to="/login">Iniciar Sesión</Link>}
           {isLoggedin && (
             <>
-            <Link to="/profile">Profile</Link> /
-            <Link to="/expenses">Expenses</Link> /
-            <Link to="/expenses/new">Create</Link> /
-            <Link to="/expenses/:id">Detail</Link> /
+            <Link to="/profile">Perfil</Link> /
+            <Link to="/expenses">Gastos</Link> /
+            <Link to="/expenses/new">Crear</Link> /
+            <Link to="/expenses/:id">Detalle</Link> /
             <Link to="/credit-cards">Tarjetas de Crédito</Link> /
             <button onClick={handleLogout}>Cerrar Sesión</button>
             </>
